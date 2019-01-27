@@ -6,29 +6,10 @@ if  [ ! -e '/usr/bin/wget' ]; then
     echo "Error: wget command not found. You must be install wget command at first."
     exit 1
 fi
-read -p "请输入你的服务器提供商: " Provider
 
 
 # Get IP
 OwnerIP=$(who am i | awk '{print $NF}' | sed -e 's/[()]//g')
-while :; do echo
-  read -p "请确认你所在地的IP:${OwnerIP} [y/n]: " ifOwnerIP
-  if [[ ! ${ifOwnerIP} =~ ^[y,n]$ ]]; then
-    echo "输入错误! 请确保你输入的是 'y' 或者 'n'"
-  else
-    break
-  fi
-done
-if [[ ${ifOwnerIP} == "n" ]]; then
-  while :; do echo
-    read -p "请输入你所在地的IP: " OwnerIP
-    if [[ ! ${OwnerIP} ]]; then
-      echo "输入错误!IP地址不能为空！"
-    else
-      break
-    fi
-  done
-fi
 
 
 # Check release
