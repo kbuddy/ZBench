@@ -398,22 +398,22 @@ TGT=$( cat /tmp/gdt.txt_table )
 TGU=$( cat /tmp/gdu.txt_table )
 
 echo "上海电信路由："
-echo $TSM
+cat /tmp/sht.txt
 next
 echo "上海联通路由："
-echo $TSU
+cat /tmp/shu.txt
 next
 echo "上海移动路由："
-echo $TST
+cat /tmp/shm.txt
 next
 echo "广东电信路由："
-echo $TGT
+cat /tmp/gdt.txt
 next
 echo "广东联通路由："
-echo $TGU
+cat /tmp/gdu.txt
 next
 echo "广东移动路由："
-echo $TGM
+cat /tmp/gdm.txt
 next
 
 echo "您的测评报告已保存在 /root/report.html"
