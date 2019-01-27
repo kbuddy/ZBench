@@ -96,19 +96,19 @@ fi
 chmod a+rx /tmp/ZPing-CN.py
 
 #"TraceRoute to Shanghai Telecom"
-/tmp/besttrace 61.129.42.6 > /tmp/sht.txt 2>&1 &
+/tmp/besttrace -q1 61.129.42.6 > /tmp/sht.txt 2>&1 &
 #"TraceRoute to Shanghai Mobile"
-/tmp/besttrace speedtest2.sh.chinamobile.com > /tmp/shm.txt 2>&1 &
+/tmp/besttrace -q1 speedtest2.sh.chinamobile.com > /tmp/shm.txt 2>&1 &
 #"TraceRoute to Shanghai Unicom"
-/tmp/besttrace 210.22.80.1 > /tmp/shu.txt 2>&1 &
+/tmp/besttrace -q1 210.22.80.1 > /tmp/shu.txt 2>&1 &
 #"TraceRoute to Guangdong Telecom"
-/tmp/besttrace 121.14.220.240 > /tmp/gdt.txt 2>&1 &
+/tmp/besttrace -q1 121.14.220.240 > /tmp/gdt.txt 2>&1 &
 #"TraceRoute to Guangdong Mobile"
-/tmp/besttrace 211.136.192.6 > /tmp/gdm.txt 2>&1 &
+/tmp/besttrace -q1 211.136.192.6 > /tmp/gdm.txt 2>&1 &
 #"TraceRoute to Guangdong Unicom"
-/tmp/besttrace 221.5.88.88 > /tmp/gdu.txt 2>&1 &
+/tmp/besttrace -q1 221.5.88.88 > /tmp/gdu.txt 2>&1 &
 #"TraceRoute to Owner's Network"
-/tmp/besttrace ${OwnerIP} > /tmp/own.txt 2>&1 &
+/tmp/besttrace -q1 ${OwnerIP} > /tmp/own.txt 2>&1 &
 
 
 
@@ -317,65 +317,6 @@ speed_cn && next
 python /tmp/ZPing-CN.py
 next
 
-NetCFspeec=$( sed -n "2p" /tmp/speed.txt )
-NetCFping=$( sed -n "3p" /tmp/speed.txt )
-NetLJPspeed=$( sed -n "5p" /tmp/speed.txt )
-NetLJPping=$( sed -n "6p" /tmp/speed.txt )
-NetLSGspeed=$( sed -n "8p" /tmp/speed.txt )
-NetLSGping=$( sed -n "9p" /tmp/speed.txt )
-NetLUKspeed=$( sed -n "11p" /tmp/speed.txt )
-NetLUKping=$( sed -n "12p" /tmp/speed.txt )
-NetLDEspeed=$( sed -n "14p" /tmp/speed.txt )
-NetLDEping=$( sed -n "15p" /tmp/speed.txt )
-NetLCAspeed=$( sed -n "17p" /tmp/speed.txt )
-NetLCAping=$( sed -n "18p" /tmp/speed.txt )
-NetSTXspeed=$( sed -n "20p" /tmp/speed.txt )
-NetSTXping=$( sed -n "21p" /tmp/speed.txt )
-NetSWAspeed=$( sed -n "23p" /tmp/speed.txt )
-NetSWAping=$( sed -n "24p" /tmp/speed.txt )
-NetSDEspeed=$( sed -n "26p" /tmp/speed.txt )
-NetSDEping=$( sed -n "27p" /tmp/speed.txt )
-NetSSGspeed=$( sed -n "29p" /tmp/speed.txt )
-NetSSGping=$( sed -n "30p" /tmp/speed.txt )
-NetSCNspeed=$( sed -n "32p" /tmp/speed.txt )
-NetSCNping=$( sed -n "33p" /tmp/speed.txt )
-
-
-NetUPST=$( sed -n "4p" /tmp/speed_cn.txt )
-NetDWST=$( sed -n "5p" /tmp/speed_cn.txt )
-NetPiST=$( sed -n "6p" /tmp/speed_cn.txt )
-NetUPCT=$( sed -n "7p" /tmp/speed_cn.txt )
-NetDWCT=$( sed -n "8p" /tmp/speed_cn.txt )
-NetPiCT=$( sed -n "9p" /tmp/speed_cn.txt )
-NetUPXT=$( sed -n "10p" /tmp/speed_cn.txt )
-NetDWXT=$( sed -n "11p" /tmp/speed_cn.txt )
-NetPiXT=$( sed -n "12p" /tmp/speed_cn.txt )
-NetUPSU=$( sed -n "13p" /tmp/speed_cn.txt )
-NetDWSU=$( sed -n "14p" /tmp/speed_cn.txt )
-NetPiSU=$( sed -n "15p" /tmp/speed_cn.txt )
-NetUPCU=$( sed -n "16p" /tmp/speed_cn.txt )
-NetDWCU=$( sed -n "17p" /tmp/speed_cn.txt )
-NetPiCU=$( sed -n "18p" /tmp/speed_cn.txt )
-NetUPXM=$( sed -n "19p" /tmp/speed_cn.txt )
-NetDWXM=$( sed -n "20p" /tmp/speed_cn.txt )
-NetPiXM=$( sed -n "21p" /tmp/speed_cn.txt )
-NetUPSM=$( sed -n "22p" /tmp/speed_cn.txt )
-NetDWSM=$( sed -n "23p" /tmp/speed_cn.txt )
-NetPiSM=$( sed -n "24p" /tmp/speed_cn.txt )
-NetUPCM=$( sed -n "25p" /tmp/speed_cn.txt )
-NetDWCM=$( sed -n "26p" /tmp/speed_cn.txt )
-NetPiCM=$( sed -n "27p" /tmp/speed_cn.txt )
-
-
-wget -N --no-check-certificate https://raw.githubusercontent.com/kbuddy/ZBench/master/Generate.py >> /dev/null 2>&1
-python Generate.py && rm -rf Generate.py && cp /root/report.html /tmp/report/index.html
-TSM=$( cat /tmp/shm.txt_table )
-TST=$( cat /tmp/sht.txt_table )
-TSU=$( cat /tmp/shu.txt_table )
-TGM=$( cat /tmp/gdm.txt_table )
-TGT=$( cat /tmp/gdt.txt_table )
-TGU=$( cat /tmp/gdu.txt_table )
-
 echo "上海电信路由："
 cat /tmp/sht.txt
 next
@@ -393,7 +334,4 @@ cat /tmp/gdu.txt
 next
 echo "广东移动路由："
 cat /tmp/gdm.txt
-next
-
-echo "您的测评报告已保存在 /root/report.html"
 
