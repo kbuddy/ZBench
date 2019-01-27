@@ -14,11 +14,11 @@
 
 中文版：
 
-    wget -N --no-check-certificate https://raw.githubusercontent.com/kbuddy/ZBench/master/ZBench-CN.sh && sudo bash ZBench-CN.sh
+    sudo wget -N --no-check-certificate https://raw.githubusercontent.com/kbuddy/ZBench/master/ZBench-CN.sh && sudo bash ZBench-CN.sh
     
 英文版：
 
-    wget -N --no-check-certificate https://raw.githubusercontent.com/kbuddy/ZBench/master/ZBench.sh && sudo bash ZBench.sh
+    sudo wget -N --no-check-certificate https://raw.githubusercontent.com/kbuddy/ZBench/master/ZBench.sh && sudo bash ZBench.sh
     
 ## 效果图
 
