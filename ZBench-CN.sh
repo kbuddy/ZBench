@@ -41,8 +41,6 @@ rm -rf /tmp/report && mkdir /tmp/report
 
 echo "正在安装必要的依赖，请耐心等待..."
 
-
-
 # Install Virt-what
 if  [ ! -e '/usr/sbin/virt-what' ]; then
     echo "Installing Virt-What......"
@@ -53,24 +51,6 @@ if  [ ! -e '/usr/sbin/virt-what' ]; then
         apt-get -y install virt-what > /dev/null 2>&1
     fi
 fi
-
-# Install uuid
-echo "Installing uuid......"
-if [ "${release}" == "centos" ]; then
-    yum -y install uuid > /dev/null 2>&1
-else
-    apt-get -y install uuid > /dev/null 2>&1
-fi
-
-
-# Install curl
-echo "Installing curl......"
-if [ "${release}" == "centos" ]; then
-    yum -y install curl > /dev/null 2>&1
-else
-    apt-get -y install curl > /dev/null 2>&1
-fi
-
 
 # Install Besttrace
 if  [ ! -e '/tmp/besttrace' ]; then
@@ -329,7 +309,6 @@ echo $virtua >> /tmp/info.txt
 echo $io1 >> /tmp/info.txt
 echo $io2 >> /tmp/info.txt
 echo $io3 >> /tmp/info.txt
-AKEY=$( uuid )
 
 printf "%-30s%-20s%-24s%-12s\n" "节点名称" "IP地址" "下载速度" "延迟"
 speed && next
