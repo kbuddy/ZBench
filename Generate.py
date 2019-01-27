@@ -152,13 +152,12 @@ html = """
       更多
       <i class="dropdown icon"></i>
       <div class="menu">
-        <a class="item" href="https://www.github.com/FunctionClub"><i class="edit icon"></i> 关于我们</a>
-        <a class="item" href="https://github.com/FunctionClub/ZBench/"><i class="github icon"></i>Github </a>
+        <a class="item" href="https://github.com/kbuddy/ZBench/"><i class="github icon"></i>Github </a>
       </div>
     </div>
     <div class="right item">
       <div class="ui">    
-            <a href="https://github.com/FunctionClub/ZBench/">ZBench v1.0-Beta</a>
+            <a href="https://github.com/kbuddy/ZBench/">ZBench v1.0-Beta</a>
       </div>
     </div>
   </div>
@@ -506,9 +505,6 @@ footer = """
 </div>
 </div>
 <div class="ui hidden divider"></div>
-<div class="ui visible message">
-  <p>CopyRight 2016-2018 <a href="https://www.github.com/FunctionClub">Function Club</a>. All Right Reserved.   Published By <a href="https://www.zhujiboke.com">主机博客</a></p>
-</div>
 
 </body>
 <footer>

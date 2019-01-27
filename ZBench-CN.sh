@@ -96,7 +96,7 @@ if  [ ! -e '/tmp/besttrace' ]; then
     echo "Installing Besttrace......"
     dir=$(pwd)
     cd /tmp/
-    wget  -N --no-check-certificate https://raw.githubusercontent.com/FunctionClub/ZBench/master/besttrace > /dev/null 2>&1
+    wget  -N --no-check-certificate https://raw.githubusercontent.com/kbuddy/ZBench/master/besttrace > /dev/null 2>&1
     cd $dir
 fi
 chmod a+rx /tmp/besttrace
@@ -129,7 +129,7 @@ if  [ ! -e '/tmp/ZPing-CN.py' ]; then
     echo "Installing ZPing-CN.py......"
     dir=$(pwd)
     cd /tmp/
-    wget -N --no-check-certificate https://raw.githubusercontent.com/FunctionClub/ZBench/master/ZPing-CN.py > /dev/null 2>&1
+    wget -N --no-check-certificate https://raw.githubusercontent.com/kbuddy/ZBench/master/ZPing-CN.py > /dev/null 2>&1
     cd $dir
 fi
 chmod a+rx /tmp/ZPing-CN.py
@@ -392,7 +392,7 @@ NetDWCM=$( sed -n "26p" /tmp/speed_cn.txt )
 NetPiCM=$( sed -n "27p" /tmp/speed_cn.txt )
 
 
-wget -N --no-check-certificate https://raw.githubusercontent.com/FunctionClub/ZBench/master/Generate.py >> /dev/null 2>&1
+wget -N --no-check-certificate https://raw.githubusercontent.com/kbuddy/ZBench/master/Generate.py >> /dev/null 2>&1
 python Generate.py && rm -rf Generate.py && cp /root/report.html /tmp/report/index.html
 TSM=$( cat /tmp/shm.txt_table )
 TST=$( cat /tmp/sht.txt_table )
@@ -400,26 +400,6 @@ TSU=$( cat /tmp/shu.txt_table )
 TGM=$( cat /tmp/gdm.txt_table )
 TGT=$( cat /tmp/gdt.txt_table )
 TGU=$( cat /tmp/gdu.txt_table )
-curl 'http://api.zbench.kirito.moe/action.php' --data "CPUmodel=$cname &CPUspeed=$freq MHz &CPUcore=$cores &HDDsize=$disk_total_size GB ($disk_used_size GB 已使用) &RAMsize=$tram MB ($uram MB 已使用)&SWAPsize=$swap MB ($uswap MB 已使用)&UPtime= $up&Arch=1&systemload=$load&OS= $opsy &Arch=$arch ($lbit 位)&Kernel=$kern &Virmethod=$virtua &IOa=$io1&IOb=$io2&IOc=$io3&NetCFspeec=$NetCFspeec&NetCFping=$NetCFping&NetLJPspeed=$NetLJPspeed&NetLJPping=$NetLJPping&NetLSGspeed=$NetLSGspeed&NetLSGping=$NetLSGping&NetLUKspeed=$NetLUKspeed&NetLUKping=$NetLUKping&NetLDEspeed=$NetLDEspeed&NetLDEping=$NetLDEping&NetLCAspeed=$NetLCAspeed&NetLCAping=$NetLCAping&NetSTXspeed=$NetSTXspeed&NetSTXping=$NetSTXping&NetSWAspeed=$NetSWAspeed&NetSWAping=$NetSWAping&NetSDEspeed=$NetSDEspeed&NetSDEping=$NetSDEping&NetSSGspeed=$NetSSGspeed&NetSSGping=$NetSSGping&NetSCNspeed=$NetSCNspeed&NetSCNping=$NetSCNping&NetUPST=$NetUPST&NetDWST=$NetDWST&NetPiST=$NetPiST&NetUPCT=$NetUPCT&NetDWCT=$NetDWCT&NetPiCT=$NetPiCT&NetUPXT=$NetUPXT&NetDWXT=$NetDWXT&NetPiXT=$NetPiXT&NetUPSU=$NetUPSU&NetDWSU=$NetDWSU&NetPiSU=$NetPiSU&NetUPCU=$NetUPCU&NetDWCU=$NetDWCU&NetPiCU=$NetPiCU&NetUPXM=$NetUPXM&NetDWXM=$NetDWXM&NetPiXM=$NetPiXM&NetUPSM=$NetUPSM&NetDWSM=$NetDWSM&NetPiSM=$NetPiSM&NetUPCM=$NetUPCM&NetDWCM=$NetDWCM&NetPiCM=$NetPiCM&TSM=$TSM&TST=$TST&TSU=$TSU&TGM=$TGM&TGT=$TGT&TGU=$TGU&AKEY=$AKEY&Provider=$Provider"
-IKEY=$(curl "http://api.zbench.kirito.moe/getkey.php?AKEY=$AKEY" 2>/dev/null)
-echo "在线查看测评报告：https://zbench.kirito.moe/record-cn.php?IKEY=$IKEY"
+
 echo "您的测评报告已保存在 /root/report.html"
 
-# If use simple http server
-while :; do echo
-  read -p "你想现在查看您的测评报告吗? [y/n]: " ifreport
-  if [[ ! $ifreport =~ ^[y,n]$ ]]; then
-    echo "输入错误! 请确保你输入的是 'y' 或者 'n'"
-  else
-    break
-  fi
-done
-
-if [[ $ifreport == 'y' ]];then
-    echo ""
-    myip=`curl -m 10 -s http://members.3322.org/dyndns/getip`
-    echo "访问 http://${myip}:8001/index.html 查看您的测试报告，按 Ctrl + C 退出"
-	cd /tmp/report
-    python -m SimpleHTTPServer 8001
-    iptables -I INPUT -m state --state NEW -m tcp -p tcp --dport 8001 -j ACCEPT
-fi
