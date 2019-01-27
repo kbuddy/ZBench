@@ -116,26 +116,19 @@ fi
 chmod a+rx /tmp/ZPing-CN.py
 
 #"TraceRoute to Shanghai Telecom"
-echo "上海电信：" > /tmp/besttrace.txt 
-/tmp/besttrace -q1 61.129.42.6 >> /tmp/besttrace.txt 2>&1 &
+/tmp/besttrace 61.129.42.6 > /tmp/sht.txt 2>&1 &
 #"TraceRoute to Shanghai Mobile"
-echo "上海移动：" >> /tmp/besttrace.txt 
-/tmp/besttrace -q1 speedtest2.sh.chinamobile.com >> /tmp/besttrace.txt 2>&1 &
+/tmp/besttrace speedtest2.sh.chinamobile.com > /tmp/shm.txt 2>&1 &
 #"TraceRoute to Shanghai Unicom"
-echo "上海联通：" >> /tmp/besttrace.txt 
-/tmp/besttrace -q1 210.22.80.1 >> /tmp/besttrace.txt 2>&1 &
+/tmp/besttrace 210.22.80.1 > /tmp/shu.txt 2>&1 &
 #"TraceRoute to Guangdong Telecom"
-echo "广东电信：" >> /tmp/besttrace.txt 
-/tmp/besttrace -q1 121.14.220.240 >> /tmp/besttrace.txt 2>&1 &
+/tmp/besttrace 121.14.220.240 > /tmp/gdt.txt 2>&1 &
 #"TraceRoute to Guangdong Mobile"
-echo "广东移动：" >> /tmp/besttrace.txt 
-/tmp/besttrace -q1 211.136.192.6 >> /tmp/besttrace.txt 2>&1 &
+/tmp/besttrace 211.136.192.6 > /tmp/gdm.txt 2>&1 &
 #"TraceRoute to Guangdong Unicom"
-echo "广东联通：" >> /tmp/besttrace.txt 
-/tmp/besttrace -q1 221.5.88.88 >> /tmp/besttrace.txt 2>&1 &
+/tmp/besttrace 221.5.88.88 > /tmp/gdu.txt 2>&1 &
 #"TraceRoute to Owner's Network"
-echo "${OwnerIP}：" >> /tmp/besttrace.txt 
-/tmp/besttrace -q1 ${OwnerIP} >> /tmp/besttrace.txt 2>&1 &
+/tmp/besttrace ${OwnerIP} > /tmp/own.txt 2>&1 &
 
 
 
@@ -344,7 +337,6 @@ printf "%-30s%-22s%-24s%-12s\n" "节点名称" "上传速度" "下载速度" "�
 speed_cn && next
 python /tmp/ZPing-CN.py
 next
-cat /tmp/besttrace.txt && next
 
 NetCFspeec=$( sed -n "2p" /tmp/speed.txt )
 NetCFping=$( sed -n "3p" /tmp/speed.txt )
@@ -404,6 +396,25 @@ TSU=$( cat /tmp/shu.txt_table )
 TGM=$( cat /tmp/gdm.txt_table )
 TGT=$( cat /tmp/gdt.txt_table )
 TGU=$( cat /tmp/gdu.txt_table )
+
+echo "上海电信路由："
+echo $TSM
+next
+echo "上海联通路由："
+echo $TSU
+next
+echo "上海移动路由："
+echo $TST
+next
+echo "广东电信路由："
+echo $TGT
+next
+echo "广东联通路由："
+echo $TGU
+next
+echo "广东移动路由："
+echo $TGM
+next
 
 echo "您的测评报告已保存在 /root/report.html"
 
